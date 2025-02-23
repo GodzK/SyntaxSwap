@@ -49,9 +49,7 @@
   background-color: white;
   color: black;
 }
-.converter textarea {
 
-}
 .button {
   position: relative;
   transition: all 0.3s ease-in-out;
@@ -186,6 +184,5 @@
   opacity: 1;
 }
 .lang-img{
-  position: relative;
-  padding-top: 15rem;
+  width: 1000px;
 }

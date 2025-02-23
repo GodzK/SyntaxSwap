@@ -20,7 +20,7 @@ export const Navigation = () => {
         <div className="menu-text">
           <a href="http://localhost:3000/">Swap Syntax</a>
         </div>
-        <div className="sub-menu">
+        {/* <div className="sub-menu">
           <div className="icon-box">
             <div className="icon"><i className="fal fa-exchange-alt"></i></div>
             <div className="text">
@@ -35,14 +35,14 @@ export const Navigation = () => {
               <div className="sub-text">Adjust syntax rules to your needs.</div>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
 
       <div className="menu-item">
         <div className="menu-text">
-          <a href="#">Supported Languages</a>
+          <a href="/support">Supported Languages</a>
         </div>
-        <div className="sub-menu">
+        {/* <div className="sub-menu">
           <div className="icon-box">
             <div className="icon"><i className="fal fa-language"></i></div>
             <div className="text">
@@ -57,14 +57,14 @@ export const Navigation = () => {
               <div className="sub-text">Let us know what to add next.</div>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
 
       <div className="menu-item">
         <div className="menu-text">
           <a href="#">Examples</a>
         </div>
-        <div className="sub-menu">
+        {/* <div className="sub-menu">
           <div className="icon-box">
             <div className="icon"><i className="fal fa-book-open"></i></div>
             <div className="text">
@@ -79,7 +79,7 @@ export const Navigation = () => {
               <div className="sub-text">Compare patterns across languages.</div>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
       
     </nav>
