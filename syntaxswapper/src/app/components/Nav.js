@@ -18,7 +18,7 @@ export const Navigation = () => {
     <nav id="menu">
       <div className="menu-item">
         <div className="menu-text">
-          <a href="#">Swap Syntax</a>
+          <a href="http://localhost:3000/">Swap Syntax</a>
         </div>
         <div className="sub-menu">
           <div className="icon-box">
