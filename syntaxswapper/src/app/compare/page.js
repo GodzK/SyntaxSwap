@@ -2,14 +2,16 @@
 import { useState, useEffect } from "react";
 import Javascript from "./pic/JavaScript-logo.png";
 import Python from "./pic/Python.png";
-import Java from "./pic/java.png"
-import Go from "./pic/go.png"
-import Csharp from "./pic/csharp.png"
-import Cpp from "./pic/c++.png"
-import Php from "./pic/php.png"
+import Java from "./pic/java.png";
+import Go from "./pic/go.png";
+import { motion } from "framer-motion";
+import Csharp from "./pic/csharp.png";
+import Cpp from "./pic/c++.png";
+import Php from "./pic/php.png";
 import PixelCard from "../components/PixelCard";
 import Image from "next/image";
-import TypeScript from "./pic/typescript.png"
+import "./styles.css";
+import TypeScript from "./pic/typescript.png";
 import conciseConversionMap from "../components/data/conversionMap";
 function Compare() {
   const [leftLang, setLeftLang] = useState("JavaScript");
@@ -31,15 +33,24 @@ function Compare() {
     "C#": Csharp,
     TypeScript: TypeScript,
   };
-
+  const languageColor = {
+    JavaScript: "yellow",
+    Python: "blue",
+    "C++": "blue",
+    Java: "red",
+    Go: "blue",
+    PHP: "purple",
+    "C#": "blue",
+    TypeScript: "blue",
+  };
   const toggleLeftPopup = () => setShowLeftPopup(!showLeftPopup);
   const toggleRightPopup = () => setShowRightPopup(!showRightPopup);
 
-  
-
   const mockConversion = (text, fromLang, toLang) => {
     if (fromLang === toLang) return text;
-    const key = Object.keys(conciseConversionMap).find(k => conciseConversionMap[k][fromLang] === text);
+    const key = Object.keys(conciseConversionMap).find(
+      (k) => conciseConversionMap[k][fromLang] === text
+    );
     if (key && conciseConversionMap[key][toLang]) {
       return conciseConversionMap[key][toLang];
     }
@@ -49,8 +60,22 @@ function Compare() {
   const handleConvert = () => {
     setOutputText(mockConversion(inputText, leftLang, rightLang));
   };
-  const LanguagePopup = ({ title, onSelectLanguage, closePopup, anchorRef }) => {
-    const languages = ["JavaScript", "Python", "C++", "Java", "Go", "PHP", "C#", "TypeScript"];
+  const LanguagePopup = ({
+    title,
+    onSelectLanguage,
+    closePopup,
+    anchorRef,
+  }) => {
+    const languages = [
+      "JavaScript",
+      "Python",
+      "C++",
+      "Java",
+      "Go",
+      "PHP",
+      "C#",
+      "TypeScript",
+    ];
     const [position, setPosition] = useState({ top: 0, left: 0 });
     useEffect(() => {
       if (anchorRef) {
@@ -60,7 +85,8 @@ function Compare() {
           left: rect.left + rect.width / 2 - 200,
         });
       }
-    }, [anchorRef]);return (
+    }, [anchorRef]);
+    return (
       <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4">
         <div className="bg-black rounded-lg p-6 w-full max-w-md ">
           <h2 className="text-xl font-bold mb-4">{title}</h2>
@@ -99,13 +125,12 @@ function Compare() {
     }
   };
 
-
   useEffect(() => {
     if (animateLeft) {
       const timer = setTimeout(() => setAnimateLeft(false), 500);
       return () => clearTimeout(timer);
     }
-  }, [animateLeft ,]);
+  }, [animateLeft]);
 
   useEffect(() => {
     if (animateRight) {
@@ -115,54 +140,76 @@ function Compare() {
   }, [animateRight]);
 
   return (
-    <div className="">
+    <div className="mt-16">
       <div className=" rounded-lg shadow-lg p-6 w-full max-w-8xl">
         <div className="flex gap-4 relative">
           <button onClick={toggleLeftPopup} className="relative">
-          <Image
-            src={languageLogos[leftLang]}
-            width={150} // ขนาดที่ต้องการ
-            height={150} 
-            alt={leftLang}
-            className={`absolute top-[90px] right-[80px] z-10 lang-logo ${
-              animateRight ? "animate-bounce" : ""
-            }`}
-          />
-            <PixelCard
-              className="cursor-pointer transition-transform duration-300 hover:scale-105"
+            <Image
+              src={languageLogos[leftLang]}
+              width={150} // ขนาดที่ต้องการ
+              height={150}
+              alt={leftLang}
+              className={`absolute top-[90px] right-[80px] z-10 lang-logo ${
+                animateRight ? "animate-bounce" : ""
+              }`}
+            />
+            <motion.div
+              className="box"
+              animate={{ y: 0, opacity: 1 }}
+              initial={{ y: 50, opacity: 0 }}
+              transition={{ duration: 0.7 }}
+            >
+              <PixelCard
+                className="cursor-pointer transition-transform duration-300 hover:scale-105"
+                style={{
+                  backgroundImage: `url(${languageLogos[leftLang].src})`,
+                  backgroundSize: "cover",
+                }}
+              >
+                <div className="p-4 bg-opacity-75 bg-black text-white rounded-lg">
+                  {leftLang}
+                </div>
+              </PixelCard>
+            </motion.div>
+            <h1
+              className={`p-4 ${
+                leftLang === "JavaScript" ? "text-black" : "text-white"
+              } rounded-lg z-10`}
               style={{
-                backgroundImage: `url(${languageLogos[leftLang].src})`,
-                backgroundSize: "cover",
+                backgroundColor: languageColor[leftLang],
               }}
             >
-              <div className="p-4 bg-opacity-75 bg-black text-white rounded-lg">
-                {leftLang}
-              </div>
-            </PixelCard>
+              {leftLang}
+            </h1>
           </button>
 
           {/* Converter */}
           <div className="flex-1 flex flex-col gap-4">
-            <textarea
-              rows={3}
-              cols={3}
-              className="w-full p-4 border rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="Place Your Syntax Here ..."
-              value={inputText}
-              onChange={(e) => setInputText(e.target.value)}
-            />
-            <button
-              onClick={handleConvert}
-              className="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition-colors"
+            <motion.div
+              className="box"
+              animate={{ opacity: 1 }}
+              initial={{ opacity: 0 }}
+              transition={{ duration: 2.5 }}
             >
-              Convert
-            </button>
-            <textarea
-              rows={4}
-              className="w-full p-4 border rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
-              value={outputText}
-              readOnly
-            />
+              <textarea
+                rows={3}
+                cols={3}
+                className="w-full p-4 border rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder="Place Your Syntax Here ..."
+                value={inputText}
+                onChange={(e) => setInputText(e.target.value)}
+              />
+
+              <textarea
+                rows={7}
+                className="w-full p-4 border rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
+                value={outputText}
+                readOnly
+              />
+              <button onClick={handleConvert} className="button-compare">
+                Convert
+              </button>
+            </motion.div>
           </div>
 
           {/* Right Language Selection */}
@@ -176,17 +223,28 @@ function Compare() {
                 animateRight ? "animate-bounce" : ""
               }`}
             />
-            <PixelCard
-              className="cursor-pointer transition-transform duration-300 hover:scale-105"
-              style={{
-                backgroundImage: `url(${languageLogos[rightLang].src})`,
-                backgroundSize: "cover",
-              }}
+            <motion.div
+              className="box"
+              animate={{ y: 0, opacity: 1 }}
+              initial={{ y: 50, opacity: 0 }}
+              transition={{ duration: 0.7 }}
             >
-              <div className="p-4 bg-opacity-75 bg-black text-white rounded-lg">
-                {rightLang}
-              </div>
-            </PixelCard>
+              <PixelCard
+                className="cursor-pointer transition-transform duration-300 hover:scale-105"
+                style={{
+                  backgroundImage: `url(${languageLogos[rightLang].src})`,
+                  backgroundSize: "cover",
+                }}
+              ></PixelCard>
+            </motion.div>
+            <h1
+              className={`p-4 rounded-lg z-10 bg-black ${
+                rightLang === "JavaScript" ? "text-black" : "text-white"
+              }`}
+              style={{ backgroundColor: languageColor[rightLang] }}
+            >
+              {rightLang}
+            </h1>
           </button>
         </div>
       </div>

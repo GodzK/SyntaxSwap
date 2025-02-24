@@ -8,7 +8,7 @@ import CsharpLogo from "../compare/pic/csharp.png";
 import CppLogo from "../compare/pic/c++.png";
 import PhpLogo from "../compare/pic/php.png";
 import TypeScriptLogo from "../compare/pic/typescript.png";
-
+import {motion} from "framer-motion";
 const supportedLanguages = [
   { name: "JavaScript", logo: JavascriptLogo },
   { name: "Python", logo: PythonLogo },
@@ -22,7 +22,13 @@ const supportedLanguages = [
 
 function SupportLanguages() {
   return (
-    <div className="p-8 max-w-5xl mx-auto text-center bg-white-500/10 backdrop-blur-xl border border-white-500/40 rounded-3xl shadow-lg shadow-white-500/50">
+   <motion.div
+    className="box"
+    animate={{ x: 0 , opacity:1}}
+    initial={{ x: -60 , opacity:0 }}
+    transition={{ duration: 0.2  }}
+  >  <div className="p-8 mt-12 max-w-5xl mx-auto text-center bg-white-500/10 backdrop-blur-xl border border-white-500/40 rounded-3xl shadow-lg shadow-white-500/50">
+       
       <h1 className="text-4xl font-bold mb-8 text-white-700 drop-shadow-lg">
         Supported Languages
       </h1>
@@ -45,7 +51,9 @@ function SupportLanguages() {
           </div>
         ))}
       </div>
-    </div>
+     
+    </div> 
+    </motion.div>
   );
 }
 
