@@ -7,7 +7,7 @@
 body {
     margin: 0;
     padding: 0;
-    background: linear-gradient(45deg, #102eff, #fff456);
+   background: transparent;
     font-family: 'Roboto', sans-serif;
     height: 100vh;
     overflow: hidden;

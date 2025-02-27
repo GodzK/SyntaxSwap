@@ -62,7 +62,7 @@ export const Navigation = () => {
 
       <div className="menu-item">
         <div className="menu-text">
-          <a href="#">Examples</a>
+          <a href="/example">Examples</a>
         </div>
         {/* <div className="sub-menu">
           <div className="icon-box">
