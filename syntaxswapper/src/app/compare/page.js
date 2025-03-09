@@ -281,7 +281,7 @@ function Compare() {
             title="Select Source Language"
             onSelectLanguage={(lang) => {
               setLeftLang(lang);
-              setLeftLangSelected(true); // เปิด Animation เมื่อเลือก
+              setLeftLangSelected(true); 
               setShowLeftPopup(false);
               if (selectedSyntax) setOutputText(convertSyntax(selectedSyntax, lang, rightLang));
             }}
@@ -293,7 +293,7 @@ function Compare() {
             title="Select Target Language"
             onSelectLanguage={(lang) => {
               setRightLang(lang);
-              setRightLangSelected(true); // เปิด Animation เมื่อเลือก
+              setRightLangSelected(true);
               setShowRightPopup(false);
               if (selectedSyntax) setOutputText(convertSyntax(selectedSyntax, leftLang, lang));
             }}
